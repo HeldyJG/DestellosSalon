@@ -1,0 +1,6 @@
+{
+  "name": "Destellos Salón - Chiclayo",
+  "description": "Sitio web oficial para Destellos Salón en Chiclayo, Perú. Especialistas en balayage, babylights, retoque de mechas, alisados de keratina, catálogo de servicios, transformaciones y reserva de citas por WhatsApp.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

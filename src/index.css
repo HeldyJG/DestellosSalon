@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --color-marfil: #FAF8F5;
+  --color-marfil-card: #FFFFFF;
+  --color-marfil-soft: #F4EFEA;
+  --color-marfil-border: #E8E2D8;
+  --color-navy: #0A192F;
+  --color-navy-dark: #061120;
+  --color-navy-light: #152744;
+  --color-rose: #D48B95;
+  --color-rose-light: #F9ECEE;
+  --color-rose-accent: #E5A9B4;
+  --color-rose-hover: #C47983;
+}
+
+/* Custom subtle scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #FAF8F5;
+}
+::-webkit-scrollbar-thumb {
+  background: #D8D0C5;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #C4B9AA;
+}
+
+/* Subtle image shimmer animation */
+@keyframes pulseSubtle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.85; }
+}

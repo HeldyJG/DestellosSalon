@@ -1,0 +1,156 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="100%" height="100%">
+  <defs>
+    <!-- Multi-stop metallic rose-gold gradient matching ChatGPT Image 14 sept 2026, 11_00_15.png -->
+    <linearGradient id="roseGoldMetallic" x1="12%" y1="8%" x2="88%" y2="92%">
+      <stop offset="0%" stop-color="#FCD3CB" />
+      <stop offset="20%" stop-color="#F19B8B" />
+      <stop offset="45%" stop-color="#DC7765" />
+      <stop offset="70%" stop-color="#C25A47" />
+      <stop offset="88%" stop-color="#E28C7C" />
+      <stop offset="100%" stop-color="#9C3C2C" />
+    </linearGradient>
+
+    <!-- Ring gradient with rim lighting -->
+    <linearGradient id="ringMetallic" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FDE2DC" />
+      <stop offset="25%" stop-color="#EA9383" />
+      <stop offset="55%" stop-color="#CA6552" />
+      <stop offset="80%" stop-color="#B34B39" />
+      <stop offset="100%" stop-color="#DE8676" />
+    </linearGradient>
+
+    <filter id="softEmboss" x="-15%" y="-15%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#5A1A10" flood-opacity="0.22" />
+    </filter>
+
+    <filter id="ringGlow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="5" stdDeviation="7" flood-color="#6E1F12" flood-opacity="0.18" />
+    </filter>
+  </defs>
+
+  <!-- Clean Pure White Circular Emblem Canvas -->
+  <circle cx="500" cy="500" r="488" fill="#FFFFFF" />
+
+  <!-- Single Outer Metallic Rose-Gold Ring -->
+  <circle
+    cx="500"
+    cy="500"
+    r="478"
+    stroke="url(#ringMetallic)"
+    stroke-width="19"
+    fill="none"
+    filter="url(#ringGlow)"
+  />
+
+  <!-- Subtle inner edge reflection on the ring -->
+  <circle
+    cx="500"
+    cy="500"
+    r="468.5"
+    stroke="#FFF0ED"
+    stroke-width="1.8"
+    stroke-opacity="0.6"
+    fill="none"
+  />
+
+  <!-- Foreground Content: DS Monogram + Star + Text -->
+  <g filter="url(#softEmboss)">
+    <!-- ==================== DS INTERLOCKED MONOGRAM ==================== -->
+    <g id="ds-monogram">
+      <!-- LETTER D -->
+      <!-- Vertical Stem with Classical Roman Serif brackets -->
+      <path
+        d="M 310 140 
+           L 362 140 
+           L 362 156 
+           L 346 156 
+           L 346 430 
+           L 362 430 
+           L 362 446 
+           L 310 446 
+           L 310 430 
+           L 326 430 
+           L 326 156 
+           L 310 156 
+           Z"
+        fill="url(#roseGoldMetallic)"
+      />
+
+      <!-- D Outer Bow and Inner Cutout with Didone contrast -->
+      <path
+        d="M 336 140 
+           L 446 140 
+           C 525 140, 568 186, 568 293 
+           C 568 400, 525 446, 446 446 
+           L 336 446 
+           L 336 430 
+           L 440 430 
+           C 502 430, 536 390, 536 293 
+           C 536 196, 502 156, 440 156 
+           L 336 156 
+           Z"
+        fill="url(#roseGoldMetallic)"
+      />
+
+      <!-- LETTER S (Weaved into D's lower portion) -->
+      <!-- Elegant high-fashion S with graceful terminals -->
+      <path
+        d="M 638 312 
+           C 638 348, 622 360, 604 350 
+           C 596 345, 592 336, 592 324 
+           C 592 292, 638 274, 638 220 
+           C 638 172, 600 142, 552 142 
+           C 498 142, 460 172, 458 220 
+           L 484 220 
+           C 486 184, 514 160, 552 160 
+           C 584 160, 610 180, 610 216 
+           C 610 252, 574 274, 532 296 
+           C 475 324, 430 368, 430 436 
+           C 430 522, 505 582, 602 582 
+           C 645 582, 648 565, 642 550 
+           C 636 538, 620 536, 604 536 
+           C 532 536, 462 490, 462 426 
+           C 462 376, 496 342, 546 318 
+           C 592 296, 638 274, 638 312 
+           Z"
+        fill="url(#roseGoldMetallic)"
+      />
+
+      <!-- ==================== 4-POINT SPARKLE STAR ✦ ==================== -->
+      <path
+        d="M 750 286 
+           C 750 326, 730 346, 698 346 
+           C 730 346, 750 366, 750 406 
+           C 750 366, 770 346, 802 346 
+           C 770 346, 750 326, 750 286 
+           Z"
+        fill="url(#roseGoldMetallic)"
+      />
+    </g>
+
+    <!-- ==================== LOGO TYPOGRAPHY ==================== -->
+    <!-- "DESTELLOS" in refined Roman serif caps with wide tracking -->
+    <text
+      x="500"
+      y="708"
+      text-anchor="middle"
+      font-family="'Cormorant Garamond', 'Cinzel', 'Playfair Display', Georgia, serif"
+      font-size="90"
+      font-weight="600"
+      letter-spacing="26"
+      fill="url(#roseGoldMetallic)"
+    >DESTELLOS</text>
+
+    <!-- "SALÓN" in matching capitals with acute accent on Ó -->
+    <text
+      x="506"
+      y="826"
+      text-anchor="middle"
+      font-family="'Cormorant Garamond', 'Cinzel', 'Playfair Display', Georgia, serif"
+      font-size="84"
+      font-weight="400"
+      letter-spacing="36"
+      fill="url(#roseGoldMetallic)"
+    >SALÓN</text>
+  </g>
+</svg>
