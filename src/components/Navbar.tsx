@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Calendar, Instagram, Phone, Clock, MapPin, Sparkles } from 'lucide-react';
+import { Menu, X, Calendar, Instagram, Phone, Clock, MapPin, Sparkles, ShoppingBag } from 'lucide-react';
 import { SALON_INFO } from '../data/salonData';
 import { DestellosLogo } from './DestellosLogo';
 
 interface NavbarProps {
   onOpenBooking: (serviceId?: string, stylistId?: string) => void;
+  onOpenCart: () => void;
+  cartCount: number;
   activeSection: string;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking, activeSection }) => {
+export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking, onOpenCart, cartCount, activeSection }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -29,8 +31,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking, activeSection }) 
     { id: 'servicios', label: 'Servicios & Precios', href: '#servicios' },
     // { id: 'transformaciones', label: 'Resultados Reales', href: '#transformaciones' },
     { id: 'social', label: 'Feed & Redes', href: '#social' },
-    { id: 'equipo', label: 'Equipo', href: '#equipo' },
-    { id: 'opiniones', label: 'Opiniones', href: '#opiniones' },
+    { id: 'productos', label: 'Productos', href: '#productos' },
     { id: 'contacto', label: 'Ubicación & Horarios', href: '#contacto' },
   ];
 
@@ -157,6 +158,15 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking, activeSection }) 
               <span>Reservar Cita</span>
             </button>
 
+            <button
+              onClick={onOpenCart}
+              className="relative p-2.5 rounded-full border border-[#0A192F]/20 bg-[#FAF8F5] text-[#0A192F] hover:border-[#D48B95] hover:text-[#D48B95] transition-colors"
+              aria-label={`Abrir carrito, ${cartCount} productos`}
+            >
+              <ShoppingBag className="w-4 h-4" />
+              {cartCount > 0 && <span className="absolute -top-2 -right-2 min-w-5 h-5 px-1 rounded-full bg-[#D48B95] text-white text-[10px] font-bold flex items-center justify-center">{cartCount > 99 ? '99+' : cartCount}</span>}
+            </button>
+
             {/* Mobile menu hamburger button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -195,6 +205,13 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking, activeSection }) 
             </div>
 
             <div className="pt-3 border-t border-[#E8E2D8] space-y-2.5">
+              <button
+                onClick={() => { setMobileMenuOpen(false); onOpenCart(); }}
+                className="w-full bg-white border border-[#D8D1C8] text-[#0A192F] py-2.5 rounded-xl text-sm font-medium flex items-center justify-center gap-2"
+              >
+                <ShoppingBag className="w-4 h-4 text-[#D48B95]" />
+                Mi carrito ({cartCount})
+              </button>
               <button
                 onClick={() => {
                   setMobileMenuOpen(false);

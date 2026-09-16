@@ -94,3 +94,23 @@ export interface BookingDetails {
   clientEmail: string;
   notes?: string;
 }
+
+export type ProductCategory = 'shampoo' | 'tratamiento' | 'styling' | 'kit';
+
+export interface ProductItem {
+  id: string;
+  name: string;
+  category: ProductCategory;
+  categoryLabel: string;
+  description: string;
+  size: string;
+  price: number;
+  image: string;
+  badge?: string;
+  inStock: boolean;
+}
+
+export interface CartItem {
+  product: ProductItem;
+  quantity: number;
+}

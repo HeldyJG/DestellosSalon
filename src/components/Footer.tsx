@@ -73,23 +73,13 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBooking }) => {
                 </a>
               </li>
               <li>
-                <a href="#transformaciones" className="hover:text-[#E5A9B4] transition-colors">
-                  Antes & Después (Slider)
-                </a>
-              </li>
-              <li>
                 <a href="#social" className="hover:text-[#E5A9B4] transition-colors">
                   Feed de Redes & Looks
                 </a>
               </li>
               <li>
-                <a href="#equipo" className="hover:text-[#E5A9B4] transition-colors">
-                  Maestros Estilistas
-                </a>
-              </li>
-              <li>
-                <a href="#opiniones" className="hover:text-[#E5A9B4] transition-colors">
-                  Reseñas de Clientas
+                <a href="#productos" className="hover:text-[#E5A9B4] transition-colors">
+                  Productos & Tienda
                 </a>
               </li>
               <li>

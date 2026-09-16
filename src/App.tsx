@@ -11,13 +11,13 @@ import { ServicesSection } from './components/ServicesSection';
 // Sección temporalmente oculta. Se conserva para activarla cuando el portafolio esté listo.
 // import { BeforeAfterSlider } from './components/BeforeAfterSlider';
 import { SocialFeedSection } from './components/SocialFeedSection';
-import { TeamSection } from './components/TeamSection';
-import { TestimonialsSection } from './components/TestimonialsSection';
+import { ProductsSection } from './components/ProductsSection';
+import { CartDrawer } from './components/CartDrawer';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { FloatingActions } from './components/FloatingActions';
 import { BookingModal } from './components/BookingModal';
-import { ServiceItem, Stylist } from './types';
+import { CartItem, ProductItem, ServiceItem } from './types';
 
 const ScrollReveal: React.FC<{ children: ReactNode }> = ({ children }) => {
   const reduceMotion = useReducedMotion();
@@ -40,6 +40,15 @@ export default function App() {
   const [bookingServiceId, setBookingServiceId] = useState<string | undefined>();
   const [bookingStylistId, setBookingStylistId] = useState<string | undefined>();
   const [bookingNote, setBookingNote] = useState<string | undefined>();
+  const [cartOpen, setCartOpen] = useState(false);
+  const [cartItems, setCartItems] = useState<CartItem[]>(() => {
+    try {
+      const stored = localStorage.getItem('destellos-cart');
+      return stored ? JSON.parse(stored) : [];
+    } catch {
+      return [];
+    }
+  });
   const { scrollYProgress } = useScroll();
   const smoothScrollProgress = useSpring(scrollYProgress, {
     stiffness: 120,
@@ -54,8 +63,7 @@ export default function App() {
       'servicios',
       // 'transformaciones',
       'social',
-      'equipo',
-      'opiniones',
+      'productos',
       'contacto',
     ];
 
@@ -78,6 +86,10 @@ export default function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    localStorage.setItem('destellos-cart', JSON.stringify(cartItems));
+  }, [cartItems]);
+
   const handleOpenBooking = (serviceId?: string, stylistId?: string, note?: string) => {
     setBookingServiceId(serviceId);
     setBookingStylistId(stylistId);
@@ -92,11 +104,19 @@ export default function App() {
     setBookingModalOpen(true);
   };
 
-  const handleBookWithStylist = (stylist: Stylist) => {
-    setBookingServiceId(undefined);
-    setBookingStylistId(stylist.id);
-    setBookingNote(`Cita solicitada con el/la estilista: ${stylist.name}`);
-    setBookingModalOpen(true);
+  const handleAddToCart = (product: ProductItem) => {
+    setCartItems((current) => {
+      const existing = current.find((item) => item.product.id === product.id);
+      return existing
+        ? current.map((item) => item.product.id === product.id ? { ...item, quantity: item.quantity + 1 } : item)
+        : [...current, { product, quantity: 1 }];
+    });
+  };
+
+  const handleSetCartQuantity = (productId: string, quantity: number) => {
+    setCartItems((current) => quantity < 1
+      ? current.filter((item) => item.product.id !== productId)
+      : current.map((item) => item.product.id === productId ? { ...item, quantity: Math.min(quantity, 99) } : item));
   };
 
   const handleExploreSocial = () => {
@@ -117,6 +137,8 @@ export default function App() {
       {/* Sticky frosted Navbar with sectionable links */}
       <Navbar
         onOpenBooking={() => handleOpenBooking()}
+        onOpenCart={() => setCartOpen(true)}
+        cartCount={cartItems.reduce((sum, item) => sum + item.quantity, 0)}
         activeSection={activeSection}
       />
 
@@ -152,16 +174,9 @@ export default function App() {
           />
         </ScrollReveal>
 
-        {/* Stylists Team Section */}
+        {/* Product shop */}
         <ScrollReveal>
-          <TeamSection
-            onBookWithStylist={handleBookWithStylist}
-          />
-        </ScrollReveal>
-
-        {/* Testimonials & Verified Reviews Section */}
-        <ScrollReveal>
-          <TestimonialsSection />
+          <ProductsSection onAddToCart={handleAddToCart} />
         </ScrollReveal>
 
         {/* Location, Schedule & Contact Section */}
@@ -183,6 +198,14 @@ export default function App() {
         preselectedServiceId={bookingServiceId}
         preselectedStylistId={bookingStylistId}
         initialNote={bookingNote}
+      />
+
+      <CartDrawer
+        isOpen={cartOpen}
+        items={cartItems}
+        onClose={() => setCartOpen(false)}
+        onSetQuantity={handleSetCartQuantity}
+        onRemove={(productId) => setCartItems((current) => current.filter((item) => item.product.id !== productId))}
       />
     </div>
   );
